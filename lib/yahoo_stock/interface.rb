@@ -36,7 +36,7 @@ module YahooStock
       raise InterfaceError, 'Base url is require to generate full uri.' unless @base_url
       return @base_url if @uri_parameters.nil? || @uri_parameters.empty?
       params_with_values = []
-      @uri_parameters.each {|k,v| params_with_values << "#{k}=#{v}"}
+      @uri_parameters.each {|k,v| params_with_values << CGI::escape("#{k}=#{v}")}
       @base_url+'?'+params_with_values.join('&')
     end
     
